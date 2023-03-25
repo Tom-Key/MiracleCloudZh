@@ -1,0 +1,22 @@
+site_name: Miracle Cloud
+copyright: '如您遇到任何问题，请通过 <a href="https://git.miracle.ac.cn/Pretest/miracle_cloud/-/issues">Miracle Cloud Gitlab Issue</a>向我们反馈，我们将在第一时间内为您解决。'
+site_url: https://zhou-jianwen.github.io/MiracleCloudZh
+site_description: Miracle Cloud documentation
+site_author: Red Team at Go-home
+
+
+theme:
+    name: material
+    language: zh
+
+extra:
+  alternate:
+    - name: English
+      link: /MiracleCloud/ 
+      lang: en
+    - name: 简体中文
+      link: /MiracleCloudZh/
+      lang: zh
+
+
+

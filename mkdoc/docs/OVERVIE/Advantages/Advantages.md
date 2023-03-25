@@ -1,0 +1,3 @@
+**Protable Process：** Miracle Cloud is based on cloud-native infrastructure and the GA4GH specification standard, which ensures the whole analysis process is portable and conforms to the cloud-native concept "build once, run everywhere".
+**Reproducible analysis results：** Miracle Cloud ensures the reproducibility of bioinformatics research by providing functions such as Dashboard, analysis history , notebooks, workflow configuration, etc
+**Shareble Knowedge：** Miracle Cloud provides bioinformatics analysis based on the core function of workspace, which makes the analysis results can be precipitated, disclosed and disseminated in the form of workspace.

@@ -1,0 +1,16 @@
+Miracle cloud bioinformatics analysis cloud platform is a new cloud-native architecture-based biomedical information analysis platform launched by Guangzhou Laboratory and Volcano Engine for bioinformatics practitioners. Miracle Cloud provides core capabilities such as biomedical data transmission, data storage, data management, and data analysis.
+Miracle Cloud is based on workspace and realizes the whole process of bioinformatics analysis, from Preprossing, Processing to Postprocessing. Miracle Cloud helps users to achieve the goal that analysis process could be restarted, the research results could be reproduced, the operation process could be traced, and the knowledge could be accumulated and disseminated.
+The platform supports the open standards and specifications of the global genomics and health alliance GA4GH community, and continuously accumulates and precipitates open standard datasets and tool resources, so that users can quickly carry out genetic analysis tasks of any data scale.
+<br>
+
+### Architecture
+
+The functional architecture of Miracle Cloud is as follows:
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_82ade4cdaccc814e3ce1861824333d23.png)
+
+### Features
+
+**Bioinformatics Workflow Analysis:** Miracle Cloud supports the WES API specification under the Global Genomics and Health Alliance GA4GH. Miracle Cloud has open and compatible architecture, supports popular and standard workflow specifications such as WDL, and also supports large-scale bioinformatics analysis workflow operation. Miracle Cloud has reentrant, reproducible, and portable workflow which help bioinformatics users to start bioinformatics analysis and research quickly, flexibly and conveniently.
+**Bioinformatics Data Management:** The data in the Miracle Cloud bioinformatics analysis cloud platform is stored in the "cloud", adhering to the concept of unique data storage, and using object storage as a storage medium. The data can be acquired, transmitted and used anywhere and anytime. In addition, the platform provides bioinformatics data Model management sorting, organizing and displaying bioinformatics data in the form of data tables. Bioinformatics Data Management also provides the basis for batch operation of workflow to realize vectorized calculation, and can simultaneously present input data and output results as workflow uniformly. Bioinformatics Data Management is the starting point of workflow and also the end point.
+**Bioinformatics interactive analysis:** Miracle Cloud integrates Jupyterhub in interactive analysis . It provides a real-time interactive analysis environment that conforms to the usage behavior of Bioinformatics analyst, and allows Bioinformatics analyst to create and share documents that contain live code, equations, visualizations and narrative text.
+**Multi-cloud heterogeneous environment support:** Miracle Cloud bioinformatics analysis cloud platform supports multi-cloud heterogeneous environment management, and can flexibly and conveniently deliver tasks to private cloud environments and public cloud environments according to type and magnitude of tasks. It also supports delivery of tasks to HPC Clusters or Cloud Clusters according to user need, which brings the benefit of maximizing resource utilization and flexibility.
