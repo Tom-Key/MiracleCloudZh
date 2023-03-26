@@ -1,93 +1,108 @@
-## Genomic analyses Using GATK Workflow
+## 使用GATK进行基因组分析
 
-This chapter describes how to use the Genomic Analysis Toolkit (GATK) to run a secondary genomic analysis workflow on Miracle Cloud. The tools used in this chapter is GATK, which is used to convert the sequence in Cram format to Bam format and then perform mutation analysis to obtain the mutation intermediate result gvcf file. The workflow is written in WDL and runs on the Cromwell.
+本章节介绍了如何使用Genome Analysis Toolkit(GATK)在 Miracle Cloud 上运行基因组分析工作流。本章节中使用的工具来自 GATK ，首先将Cram格式的序列转换为Bam格式，然后通过GATK工具包进行变异分析，得到变异中间结果文件gvcf文件。该工作流使用 WDL编写，并在 Cromwell 引擎上运行。
 
-### GATK Introduction
-GATK is the abbreviation of Genome Analysis Toolkit, which is a set of software and toolkit used to process high-throughput sequencing data. Originally, GATK was designed to analyze the human genome and exons, mainly to find SNPs and indels. Later, the functions of GATK are becoming more and more abundant, adding new functions such as short variant calling, Copy number variation(CNV) and structural variation (SV). At the same time, GATK is also increasingly used in data analytics of other species. Now, GATK has become the industry standard for finding variants during genomic and RNA-seq analysis.
+:::tip
+**GATK**是*Genome Analysis Toolkit*的缩写，是用来处理高通量测序数据的一套软件、工具包。最初，GATK被设计用来分析人类基因组和外显子，主要用来寻找SNP和indel。后来，GATK的功能越来越丰富，增加了short variant calling、Copy number variation（CNV）和结构变异（SV）等新功能。同时，GATK也越来越广泛地应用于其他物种的数据分析中。现在，GATK已经成为了基因组和RNA-seq分析过程中寻找变异的行业标准。
+:::
 
-### Part 1: Running cram2Bam data format conversion workflow
-In this section you can learn how to upload data and run the workflow successfully. This workflow implements file format conversion from cram to bam.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_ddc77860ab98ce97e54beaeae3b5a35b.png)
-1. #### Login to Miracle Cloud
-Using the account and password to login to Miracle Cloud. The account and password can be obtained by contacting the administrator.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_fc507354a38fc20034a465f7bc868646.png)
-There are three menus at the top of the page: Overview, Workspace and Digger. Digger is a public Workspace. Usually, you can choose to publish the completed Workspace to Digger, or you can copy the Workspace in Digger back to Workspace for re-editing.Select **Workspace**, click **New Workspace**, entering name: GATK-Workflow and a short description. After creating the Workspace we will start building the Workspace.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c8bd9e8208b9a89f6305e835ca235b7d.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_b6f05b086d089d1324dac6f5fb3d80ac.png)
+### 第一部分：运行Cram2Bam数据格式转换工作流
 
-2. #### Upload data
-Usually， uploading the sample data is the first step in starting a workflow. In this practice, we need to transfer the data set to the storage bucket first, and make the corresponding data model. You have two methods to get data models:
-	- You can download the sample-datasets file and reference-datasets file to the local according to the link below, then upload them to the storage bucket corresponding to the corresponding Workspace, and finally create a data model according to the S3 path corresponding to the file
-	- You can directly download the data model sample.csv file corresponding to this best practice. If you choose this method, you can start directly from step d.
+您可以通过这部分了解数据的上传以及成功运行工作流的方法。 该工作流程是一个文件格式转换流程，用于将基因组文件从一种格式 (CRAM) 转换为另一种格式 (BAM) 以进行下游分析。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_ef05c8dcd02105510bd2ee283b21d996.png)
+
+1. #### 登录Miracle Cloud
+使用账号密码登录Miracle Cloud, 账号密码可联系平台管理员获取。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_5bf5c8c838c692ee8d4a5fbb4c730d51.png)
+在页面上方有概览、Workspace和Digger三个菜单，其中Digger是可公开的Workspace，通常您可以选择将编辑完成的完整Workspace发布到Digger中，您也可以将Digger中的Workspace复制回Workspace进行重新编辑。选择Workspace，点击新建Workspace，输入名称：GATK-Workflow 以及简短描述。完成创建Workspace之后我们就将开始对于Workspace的构建。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_b6054b8c6c9ffb21a13ee67d37019ebb.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_978a3c68ac6ecca3b0765a1a3d0cf9ef.png)
+
+2. #### 上传数据
+通常上传所需要分析的数据是开启工作流分析的第一步，在这个实践中，我们需要先将所用到的数据集传到存储桶中，并制作对应的数据模型；您有两种制作和获得分析所用的数据模型：
+- 可以根据以下链接先下载样本数据集文件和参考数据集文件至本地，然后再上传至Workspace对应的存储桶中，最后可以根据文件对应的S3路径制作数据模型
+- 可以直接下载此最佳实践对应的数据模型sample.csv文件，选用此方式可以直接从step d开始
 ```bash
-# Dataset download links used in this tutorial：
-# DataModel(CSV):
+#本教程中用到的数据集下载链接：
+#CSV数据模型:
 https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/sample.csv
-#sample-datasets：
+#样本数据集文件：
 https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/sample-data/NA12878.cram
 https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/sample-data/my-sample-data.cram
-#reference-datasets：
+#参考数据集文件：
 https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.dict
 https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.fasta
-*https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.fasta.fai
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.fasta.fai
 ```
-Click Data-File List on the left sidebar of the platform to enter the file data management page. By clicking Upload File, you can upload the local data file to the object storage bucket corresponding to this Workspae according to the guidance.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_46c319cf5f25b9468a77d0267bbc348a.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_f03ef7ec2fa8a30b9f4651f95e85886b.png)
-After the data is uploaded, download the csv template and organize the data. Click the data column on the left, click the "+" on the right side of the **entity data model** list, the upload data model option box appears, and download the data model template.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_1a9c8f284579b6b86f082129cfd7aa29.png)
-After the data is uploaded, download the csv template and organize the data. Click the data column on the left, click the "+" on the right side of the **entity data model** list, the upload data model option box appears, and download the data model template.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_ce1c8245cdd65309d307f8cadf7e4f0a.png)
 
-The sample\_id column is the unique ID of the sample file, and the other columns are attribute columns. In the attribute column, the attribute can be a specific integer or string. Of course, more often, the attribute column will be associated with the data file on the cloud. Here we use the data model to associate the uploaded dataset files.
-a. First, you need to enter the D**ata** and the F**ile lists**;
-b. Clicking the link label behind the file, and the URL path and S3 path corresponding to the file will be displayed;
-c. Clicking the "Copy" button of the S3 path, and paste the link into the corresponding attribute column in the data model![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_da4551e13e81da31d1707fdc8a92129e.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_aca9f1ce248c18d4a02ca7cf05385a7c.png)
-d. Uploading the entity data model: click "+" on the right side of the **entity data model**, the upload data model option box appears, and upload the edited csv file.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_71e0da1c3adbe9515c58fa92910e82b2.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_39f5f74f17c33acd469a2bb6ca8701a9.png)
+点击平台左侧边栏**数据-文件列表**，进入文件数据管理页面，通过点击上传文件，可以根据引导上传本地数据文件至此Workspae对应的对象存储桶中。![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_df7377f3e58f3fdefa6d040ac5d8027b.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_e9ab9f548d359f57ab085433e2c81218.png)
+数据上传完成后，下载csv模版并组织数据。点击左侧数据栏，点击**实体数据模型**列表右侧加号，出现上传数据模型选项框，点击下载数据模型模版。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_70cc5fbed2ec6f06048fd40e9bc2b754.png)
+其中sample\_id列为样本的唯一ID，之后的所有列皆为属性列，在属性列中，属性可以是具体的整数，字符串，当然更多的时候属性列会关联到云中的数据文件，在这里我们使用数据模型关联已经上传的数据集文件。
+	a. 首先需要进入到**数据-文件列表**； 
+	b. 点击所需文件后的链接标签，会显示此文件对应的URL路径和S3路径；
+	c. 点击S3路径后的“复制”按钮，并将链接粘贴至对应的属性列中
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_87e0774121a5ec756e2582069c024c13.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_da5c10cae6ef65cdcf032bdfefe196b0.png)
+	d.上传实体数据模型：点击实体数据模型右侧的"+"，出现上传数据模型选项框，上传编辑好的csv文件。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_bea0206d7cbb6bb6a96fd33ce4609cc7.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_07816eb000c8714a7789c860744657ee.png)
 
-3. #### Import workflow
-Miracle Cloud uses workflows in Workflow Description Language (WDL) to analysis for genomics data. GATK tools that read input data all expect BAM files as the primary format. Some support the CRAM format, but we observed performance issues when working directly from CRAM files. So we first converted CRAM to BAM.
+3. #### 导入工作流
+Miracle Cloud使用工作流描述语言 (WDL) 中的工作流来处理基因组学数据。所有接收映射读取数据的 GATK 工具都期望 BAM 文件作为主要格式。有些支持CRAM格式，但我们观察到直接从 CRAM 文件工作时会出现性能问题，因此，我们首先将 CRAM 转换为 BAM。
 
-SAM, BAM, and CRAM are all different forms of the original SAM format defined to hold aligned (or more precisely, mapped) to high-throughput sequencing data. SAM stands for Sequence Alignment/Map format and is described in the standard specification *http://samtools.github.io/hts-specs/*. Both BAM and CRAM are compressed forms of SAM; BAM is a lossless compression, while CRAM can range from lossless to lossy, depending on how much compression you want to achieve (actually most). BAM and CRAM have the same information as their SAM equivalents and are structured in the same way; the difference between them is how the files themselves are encoded.
+:::tip
+SAM、BAM 和 CRAM 都是原始 SAM 格式的不同形式，这些格式是为保存对齐（或更准确地说，*映射*）的高通量测序数据而定义的。SAM 代表序列比对图，并在[此处](http://samtools.github.io/hts-specs)的标准规范中进行了描述。BAM 和 CRAM 都是 SAM 的压缩形式；BAM（用于二进制对齐图）是一种无损压缩，而 CRAM 的范围可以从无损到有损，具体取决于您想要实现多少压缩（*实际上*最多）。BAM 和 CRAM 拥有与其 SAM 等价物相同的信息，结构方式相同；它们之间的不同之处在于文件本身的编码方式。
+:::
+接下来我们需要将Cram-to-Bam 工作流导入到Workspace中，
+	a. 点击导入工作流
+	b. 选择自定义导入
+	c. 输入对应的输入项（*输入项的填写方法可查看用户指南中的自定义导入*）
+		- Git address： [https://gitee.com/joy\_lee/seq-format-conversion01](https://gitee.com/joy_lee/seq-format-conversion01)
+		- Tag: v0.47
+		- Main path：CramToBam.wdl
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_19282b30883efcecc1ed242a8022de98.png)
 
-Next we need to import the Cram-to-Bam workflow into Workspace：
-a. Click **Import Workflow**
-b. Select **Custom Import**	
-c. Enter the corresponding input items (for how to fill in the input, please read the Custom Import in the user manual)
-	- Git address： [https://gitee.com/joy\_lee/seq-format-conversion01](https://gitee.com/joy_lee/seq-format-conversion01)
-	- Tag: v0.47
-	- Main path：CramToBam.wdl
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_9a3880ab48df16757028add31992ad57.png)
+这样就完成了我们所需要的Cram to Bam的转换工作流导入。
 
-Now we have completed the import of the Cram to Bam pipeline workflow.
+4. #### 运行工作流
+	
+刚才我们已经完成了工作流的导入，那么接下来我们将运行导入的工作流。
+	a. 运行环境关联：点击**环境管理**，选择**工作流——关联集群**，从候选集群列表中选择集群，点击关联。![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c694e576c2d426c506526b7f21aee1ec.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_e0bcb694962037971a22242e30119b7a.png)
+	b. 选择我们刚才导入的Cram-to-Bam工作流
+	c. 在这里我们需要配置运行选项和运行参数，在运行选项中，选择刚才我们第一步中所上传的数据实体，并指定实体数据。![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_2ebc45d1ba9316e34894039e21def8b1.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c495d00c54369999060a69d67dbc1bf8.png)
+	d. 配置输入参数，选中输入参数选项卡，并按照如下参数进行输入，其中"this"表示此次分析所用到的csv文件，"this"后面的内容为对应csv中的列名称；当输入参数较多时，可以使用上传JSON文件的方式进行快速地导入。![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_8be5120d48939a49bf74d65c40c41e9e.png)
+	e. 配置输出参数，使用this.bai作为bai文件的输出属性列，this.bam作为bam文件的属性列
+:::tip
+通过this.列名，指定输出的结果输出到所选择的数据表的指定列中；如果原表格中没有此列则按照列名新加列；如果原表格有对应的列，则会将直接将新结果进行填充或覆盖
+:::
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_949488e50beff75c79b1709417f5daea.png)
+	f. 点击右上角开始分析，此时工作流会通过Cromwell工作流引擎进行分析，结果可在分析历史中进行查看
+### 第二部分：针对上一步输出的BAM通过GATK进行分析
 
-4. #### Run the workflow
-We have just completed the import of the workflow, then we will run the imported workflow.
-	a. Associate environment: Click **Environment Management**, select **Workflow** **- Associate Cluster**, and select a cluster from the list of candidate clusters, click Associate.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_ca4869b53885f8d3637850d9af8713a9.png)![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_36fc0db30232908f7e0e1ef88dfd31fa.png)
-	b. Select the Cram-to-Bam workflow we just imported
-	c. Here we need to configure the run options and parameters . In the Run Options, select the data entity we just uploaded in the first step, and specify the entity data.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_400b0f2c108c9b128f18fe309cbc761d.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_cc0091f1c35f10e6c79f55f5523410ba.png)
-	d. Configuring the input parameters, select the **input parameters** tab, and input according to the figure below. "this" indicates the csv file used in this analysis, and the content after "this" is the column name in the corresponding csv. When there are many input parameters, you can use the method of uploading a JSON file for quick import.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_298634d073cac5dacdff1100fe441e95.png)
-	e. Configuring **output parameters**, use this.bai as the output attribute column of the bai file, this.bam as the attribute column of the bam file
-Through **"this.column"** , the analysis result is written back to the specified column of the data model; if there is no such column in the original table, a new column will be added; if the original table has a corresponding column, the new result will be directly filled or overwritten.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_e5019303c2e5b8a7885acb9eb0da06dc.png)
-	f. Click on the upper right corner to start the analysis, the workflow will be analyzed through the Cromwell pipeline engine, and the results can be viewed in the analysis history.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_9f85e5bee607472db86420e95e542e61.png)
-### Part 2: Analyzing the BAM from the part 1
-In this chapter, we need to use the Bam and Bai files output in the first part for further analysis through the GATK workflow, and finally output the required gvcf files.
-
-1. #### Import GATK workflow
-We also need to import a workflow to take a genomic data file in BAM format and convert to gvcf format result files.Click **Workflows** on the left and click **Import Workflow** and fill in the corresponding input fields
+这个章节中我们需要使用第一部分所输出的Bam以及Bai文件通过GATK工作流进行进一步分析，最终输出所需要的gvcf文件。
+1. #### 导入GATK工作流
+我们还需要导入针对Bam序列进行进行变异分析，得到变异中间结果文件gvcf文件的工作流。点击左侧**工作流**\>**导入工作流，** 填写对应的输入信息：
 	a. Git address：https://gitee.com/joy\_lee/gatk-pipeline
-	b. Tag: v0.34
+	b. Tag: v0.34	
 	c. Main path：Hello-GATK.wdl
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_808d9c08adcc14d09bf477920ffc95e6.png)
-2. Run GATK workflow
-a. Select **data**: sample, still select NA12878 and my\_sample\_data, we will use the bam file output in the first part as the input for this part.
-b. Click the **Input Parameters** tab, select Hello\_GATK.input\_bam, and drop down in Attribute Values to select this.bam,After configuring all inputs as follows:![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_10bbe837fc0fc18c4c8eed49a5b424cf.png)
-c. Click the **Output Parameters** tab, where you can fill in the Attribute value of the output\_gvcf variable. To write to the data table, first type "this". Then add a name to the attribute. The analysis will generate a column in the sample data table.	
-d. Click the **Start Analyzing** button in the upper right corner to submit your workflow
-If your results are submitted correctly, the analysis status of the current workflow can be viewed in the job history. After a while you will see the analysis status change to analysis successful
+	
+2. #### 运行GATK工作流
+	
+	a. 选择**数据：** sample，仍然选择NA12878和my\_sample\_data，这部分我们将使用第一部分中所输出的bam文件作为这一部分的输入。
+	b. 点击**输入参数**选项卡进行配置 ，如选择Hello\_GATK.input\_bam, 在属性值下拉选择this.bam，将所有输入配置完成后如下所示![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_40eeb798c61a1a5ef2f5b0befb7b348d.png)
+	c. 点击**输出参数**选项卡，您可以在其中填写 output\_gvcf 变量的属性。要写入数据表，首先键入“this”。然后为该属性添加一个名称。工作流将为在sample数据表中生成一列。
+	d. 点击右上角 **运行分析** 按钮以提交您的工作流
+如果您的结果正确提交，那么在分析历史中查看到当前工作流的分析状态。稍等一段时间之后您就会看到分析状态转为分析成功![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c93a8f59d241ed106e98515fd67c05a0.png)
+3. #### 查看分析历史
+等待分析完成之后可以在点击左侧菜单栏**分析历史**， 查看输出的参数，并将对应样本的gvcf文件进行下载。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_53bc1b80810d11c4bc35f1993b2b5dcc.png)
+至此我们也完成了两个工作流的运行，完成了从Cram到Bam文件的格式转换，并通过GATK对Bam序列，进行变异分析，得到变异中间结果文件gvcf文件。
 
-3. #### View Job History
-After waiting for the analysis job to complete, you can click **Job History** on the left menu bar to view the output parameters, and download the gvcf file of the corresponding sample.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_73b568f73f7fb2c29d34d6089813aef2.png)So far, we have also completed the running of two workflows, completed the format conversion from Cram to Bam file, and performed analysis on the Bam sequence through GATK, and obtained the result gvcf file.
-### Part 3: Complete Workspace Overview
-If you have completed all the workflow and analysis job, you may also want to write a summary or introduction for your Workspace. You can click **Dashboard** on the left. Dashboard also integrates Jupyter Notebook. You can use MarkDown in Jupyter Notebook for document writing. When finished editing, click **Save** and **Cancel editing**.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_d8db47d38adf31a0ed284b34ce65e936.png)
+### 第三部分：完成Workspace概述
 
+如果您已经完成了所有的工作流分析工作，您可能还希望为您的Workspace写一个摘要或者介绍，您可以点击左侧Dashboard，Dashboard同样集成了Jupyter Notebook，您可以使用Jupyter Notebook中使用MarkDown进行文档的编写，完成编辑后点击**保存**并**退出编辑。**
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_45b21dca9b449a6eecba49c939ae29ec.png)
