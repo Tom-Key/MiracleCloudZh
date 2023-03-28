@@ -1,30 +1,43 @@
-### Differences in data management between cloud and traditional bioinformatics analytics
+### 云端生信分析时代和传统生信分析数据管理的差异
 
-In traditional biological information research, users need to download data from the public standard bioinformatics database to be stored locally, while in the cloud-based bioinformatics analysis platform, the data is always stored in the cloud and users are able to access the data as link anytime, anywhere. To obtain and use data, users do not need to download and store, which avoids the wastage of time, transmission errors and storage costs.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_78a089c128c1ed0043ddf16de7665331.png)
+在传统的生物信息研究中，用户需要从公开的标准生信数据库中下载数据到本地进行存储，而在基于云端的生信分析平台中，数据永远存放在云端，以链接形式供用户随时随地访问、获取和使用，用户无需下载和存储，避免了传输过时间浪费、传输错误以及存储费用等现象。
 
-### Where is Miracle Cloud data stored
+- 传统的生物信息研究
+	- 每个用户均下载一份数据至本地存储，数据不共享
+		
+	- 用户需要面临传输时间长、传输错误高、存储成本高的情况
+		
+	- 因为数据在用户本地，用户做的研究对其他人而言很难获取源数据，导致研究不可复现
+		
+	- 用户个人需要保证数据安全
+		
 
-Compared with the traditional data usage method that needs to copy data to the local, the usage method of cloud scenarios may not be intuitive. When discussing the data in the workspace in the Miracle Cloud, In addition to the data stored in the corresponding bucket of your Workspace, it is also common to link data to your Workspace in the form of a link (which does not actually exist in the corresponding bucket of your Workspace).
-In fact, when analyzing sample data, except that the sample data needs to be uploaded, while the other data does not need to be copied to your Workspace bucket. All analysis is done in the cloud, and only the generated data will be stored in the Workspace storage in the bucket.
-Typically, data analyzed in Miracle Cloud will be located in the following three locations:
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_b9d21b92635044028ed05edd85be465b.png)
+- 基于云的生物信息研究
+	- 实现数据只存储一份，针对用户实现共享
+		
+	- 用户无需下载数据，无需面临传输时间长、传输错误高、存储成本高的情况
+		
+	- 数据存储在云端，所有用户均通过链接形式访问数据，为用户研究实现可复现提供了基础
+		
+	- 数据隐私和安全在云端统一处理
+		
 
-- **Workspace bucket:** Typically, personal data you upload (such as sample data), output data from workflow output, and ipynb files from notebooks are stored in the Workspace bucket
-- **Outside Workspace Bucket :** Most of the data you use will be stored in some other data store in the cloud (like the publicly reference genome data provided by Miracle Cloud), which you can access and use in Miracle Cloud as long as you have the correct permissions and authorizations.
-- **Container Cluster:** When using the Notebook module for interactive analysis, the generated output data is stored by default in the persistent storage PVC of the container cluster. Additionally, if you need to share this data with others, you can copy it to a Workspace bucket
-### Advantages of Data Models
-Since Miracle Cloud provides buckets for storing and sharing data, why does it provide a data model for organizing data? That's because although it takes some time to follow certain rules to make data tables initially, the advantages of data models will emerge as the amount of data grows:
+![](https://lf6-volc-editor.volccdn.com/obj/volcfe/sop-public/upload_d5b76c49315c24a6372485cfe85fe78b)
 
-- Ability to organize, display and manage tens of thousands of samples for easy tracking, browsing and sorting
-	
+### Miracle Cloud数据都有可能存储在哪里
 
-- Ability to easily perform parallel computing. By selecting the data entity in the data model, it can be easily specified as the input of the workflow. The workflow of analyzing 1 sample and analyzing 1000 samples is almost the same, which makes it very good scalability.
-	
+相较于传统的需要将数据拷贝至本地的数据使用方式，云端场景的使用方式可能会不直观。当在讨论Miracle Cloud平台中workspace内的数据时，除了您Workspace对应的存储桶中存放的数据外，以链接的形式链接到您的Workspace中（实际上不存在在您的Workspace对应存储桶中）也是常见的。实际上，当分析数据时，除了需要上传样本数据外，其他的数据不会复制到您的Workspace存储桶中，相反所有分析都在云中完成，并且只有生成的数据可能会存储在工作区存储桶中。
+通常，在Miracle Cloud中分析的数据将位于以下三个位置：
+![](https://lf3-volc-editor.volccdn.com/obj/volcfe/sop-public/upload_a89590733cb8fc6446cab3cda9ba94ad)
 
-- Ability to write output data back to the data model by setting workflow output parameters, which will automatically associate output results from input data
-	
-
-- Writes output back to the data model that can be used as input to the next run without having to find the file path in the workspace bucket
+- Workspace存储桶：一般情况您上传的个人数据（如样本数据）、工作流运行的输出数据以及Notebook中的ipynb文件会存储在Workspace存储桶中
+- Workspace外部的存储桶：您使用的大部分数据将存储在云中的其他一些数据存储中（如Miracle Cloud提供的公开参考基因组数据），只要您拥有正确的权限和授权，您就可以在Miracle Cloud中访问、获取和使用。
+- 容器集群：在使用Notebook模块进行交互式分析时，生成的输出数据默认存储在容器集群的持久化存储PVC中。此外，如果您需要与他人共享这些数据，可以将这些数据复制至Workspace存储桶中
+### 数据模型的优势
+Miracle Cloud既然提供了存储桶用于存储和共享数据，为什么还要提供数据模型的方式在组织数据呢？尽管初始时制作数据表格需要符合一定规则，花费一些时间，但是数据模型的优势会随着数据量的增长而显现：
+- 能够将上千上万例样本组织、展示和管理起来，方便追踪、浏览和整理
+- 能够方便的进行向量化并行计算，通过选择数据模型中数据实体可以轻松指定其作为工作流的输入，分析1例样本和分析1000例样本的工作流几乎是相同的，有非常好的扩展性
+- 能够通过设置工作流输出参数，将输出数据写回至数据模型，会自动将输出结果和输入数据进行关联
+- 将输出结果写回至数据模型，此输出结果可以作为下一次运行的输入，而无需在工作区存储桶中寻找文件路径
 	
 
