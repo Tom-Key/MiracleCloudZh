@@ -1,94 +1,101 @@
-## Biomedical Research in Workscpace
+### Workspace理念
 
-### Workspace Concept
+在Miracle Cloud生信分析云平台中，workspace是对一次生信研究过程的完整封装，包括数据，代码，操作计算过程和结果以及作为整体介绍的dashboard，是实现科学研究和临床应用可执行，可移植，可复现，可分享，可发表的基本单位。
+![](https://lf3-volc-editor.volccdn.com/obj/volcfe/sop-public/upload_1dd84551a1dafcdf3ab8d252ef230f72)
 
-In Miracle Cloud platform, workspace is a complete encapsulation of a bioinformatics research process, including data, environment, code, operational calculation procedures, results, and dashboard as an overview. It is the basic unit that realizes executable, transportable, reproducible, shareable and publishable scientific research and biological application.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_83e22654c9c3ef0782052da7ac51848c.png)
-
-- **Bioinformatics Dataset Management:** The data in Miracle Cloud is stored in the cloud, and users can use it directly in the form of links instead of downloading it to local storage, thereby saving transmission time and storage costs.
+- 生信数据集管理：Miracle Cloud中的数据存储在云端，用户能够通过链接的形式进行直接使用，而不用下载到本地存储，从而节省传输时间成本和存储成本
 	
 
-- **Bioinformatics data model:** Data stored in different locations in the cloud can be effectively organized and displayed in the form of data tables, which can be used as the basis for vectorized calculations, and the calculation results can also be written back to the data table.
+- 生信数据模型：存储在云中不同位置的数据能够通过数据表格的形式有效的组织和展示，能够作为向量化计算的基础，同时也可将计算结果写回至数据表格
 	
 
-- **Workflow:** Support flexible and convenient workflow for bioinformatics analysis tasks of any size
+- 工作流：能够灵活、便捷的通过工作流开展基任意规模的因分析任务
 	
 
-- **Interactive Analysis:** Providing a real-time interactive analysis environment that conforms to the usage habits of bioinformatics practitioners, it can help users visualize and analyze data of any scale
+- 实时交互分析环境：通过提供符合生信从业人员使用习惯的实时交互分析环境，能够帮助用户可视化和分析任何规模的数据
 	
 
-- **Dashboard:** As an overall introduction to all research done in Workspace, it's able to record information such as data resources, workflow resources, and operation steps in the research process, and can also reproduce research in Workspace through the available interactive analysis environment.
+- Dashboard：作为对在Workspace中所做的所有研究的整体介绍，能够记录研究过程中的数据资源、工作流资源以及操作步骤等信息，此外还能通过具备的交互分析环境能够复现Workspace中的研究
 	
 
-- **Cloud Native** **Scheduling:** Support container clusters as back-end computing resources to ensure resource utilization, and at the same time ensure a unified and reproducible environment
+- 云原生化调度：支持容器集群作为后端计算资源，保证资源利用率，同时能够保证环境统一，可复现
 	
 
-- **GA4GH Open Standards Support:**  Fully support the GA4GH open standard from the level of data and tools, and integrate into the community ecology
-
-### Overview of Workspace Features
-
-#### Record and Reproduce research process in Dashboard
-
-Dashboard is integrated with Jupyterhub. On one hand, as an overview, the entire process of research in Workspace can be recorded through Markdown documents, including data, workflow, operation steps and results, etc., which can easily and quickly let others understand all the research content in this workspace. On the other hand, by providing a real-time interactive analysis environment, it can call the API of notebook and workflow which can quickly reproduce the work in the workspace.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_4a6df6cd11dd5267dd2367da8c671307.png)
-In addition, the basic information module in the Dashboard will display the name, description, creation time, and administrator information of the Workspace，and will also display the storage information corresponding to the Workspace.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c9bd920376012c7c52a43b11ae1a7ffd.png)
-
-#### Upload and store data in a bucket
-
-Each Workspace in Miracle Cloud corresponds to a bucket. This bucket information can be viewed from environmental information. The bucket corresponding to the Workspace can store the following contents:
-
-- User's own sample data which can be uploaded through pages, command lines, etc
+- GA4GH开放标准支持：从数据、工具等层面全面支持GA4GH开放标准，融入社区生态
 	
 
-- Output results, logs and other information during workflow operation
+### Workspace功能总览
+
+#### 在Dashboard中记录和复现研究过程
+
+Dashboard基于JupyterHub实现，一方面，作为概述介绍，通过Markdown文档能够记录在Workspace中研究的全部过程，包含数据、工作流以及操作步骤和结果等，能够方便快速的让他人了解此workspace中的全部研究内容；另一方面，通过提供实时的交互分析环境，能够调用Notebook和工作流运行的API，能够快速复现在workspace中开展的工作。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_d2bae9a82dbd64d03b9e514be10e09cf.png)
+此外，Dashboard中基本信息模块会展示此Workspace的名称、描述、创建时间、管理员信息，另外也会展示此Workspace对应的存储信息。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_a6cf1ced472c4c0e83840b04a7feeba7.png)
+
+#### 将数据上传并存储到存储桶中
+
+Miracle Cloud中每个Workspace均对应一个存储桶，此存储桶信息可以从环境信息中查看，Workspace对应的存储桶可以存储一下内容：
+
+- 用户自身的样本数据，可通过页面、命令行等方式上传
 	
 
-- Notebook file such as `.ipynb` file
+- 工作流运行过程中输出结果、运行日志等信息
 	
 
-Note: The data generated in the Notebook will not be stored in the bucket, but will be stored locally on the server where the Notebook is located by default. If necessary, the data needs to be manually copied to the bucket.
-
-#### Organize and manage data in data modules
-
-Miracle Cloud provides data model to organize, display and manage data in the form of data tables on the platform:
-
-- Use the user's sample data as a data table and as the input of the workflow, which simplifies the batch operation of task delivery.
+- Notebook 文件，如`.ipynb`文件
 	
 
-- The output result data of the workflow can be written back to the table. On the one hand, it realizes the unified display of input and output data, and on the other hand, the output data can be used as the input for the next step.
+注意：在Notebook中分析中产生的数据不会存储到存储桶中，而是默认存储在Notebook所在Server本地，如有需要，需手动将数据复制到存储桶中。
+
+#### 在数据模块中组织和管理数据
+
+Miracle Cloud提供数据模型功能，能够在平台以数据表格的形式组织、展示和整理数据
+
+- 能够将用户的样本数据只作为数据表格，作为工作流的输入，简化批量任务投递的操作
 	
 
-- Each row in the entity data table is represented as an entity, and each entity has a unique entity ID (first column of data); Each column in the entity data table is the attribute value of each entity.
-
-1. **Entity Data Model**
-Entity data model can be divided into entity data table and entity data set table. In the entity data table, the entity ID in the first column corresponds to a data entity, and the data entity is linked to the data set information actually stored in the cloud in the form of a link.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_a63db9e2a6ae0b98371f124c475072cd.png)
-In the entity data set table, the entity set ID in the first column corresponds to a set of data entities, and the content of the set is an array composed of data entity IDs.
-Note:
-- Entity data set table and entity data table is one-to-one correspondence
-- The entity collection table itself does not have a data entity link, but will index the data in the entity data table with the column name.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c6e758f0f9e2f20cbe73edad98d74b41.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c6be8fa88f9f5f0164f15fa914a77703.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_1dc7351c80a8ac784bfc0c9540335e3e.png)
-2. **Workspace data model**
-The Workspace-level data model, as the name suggests, means that the content in this data table is the data required by all sample data in the entire Workspace, such as reference genomic data, Docker images url, etc.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_cae80fb386e29935096082a16ae5d1e8.png)
-3. **Data file Management**
+- 能够将工作流的输出结果数据写回至表格，一方面，实现了输入、输出数据的统一展示，另一方面输出数据能够作为下一个步骤运行的输入
 	
-File lists are some file data stored in a bucket that can be inserted into a notebook for reading or linked to an entity data model.
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_836c3201a718220d4eb7bb9465296c28.png)
-<br>
 
-#### Interactive Analysis using Notebooks
-Miracle Cloud integrates Jupyterhub open source components to provide users with an environment for real-time interactive analysis of bioinformatics data.![alt](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_541e79e4c99b8e62e89bece54673ba81.png)
+- 实体数据表格中每一行均表示为一个实体，每个实体均有且有唯一实体ID（第一列数据）；实体数据表格中每一列为每个实体的属性值
+	
 
-#### Using Workflows to Simplify Bioinformatics Batch Analysis
+1. **实体数据模型**
+	
 
-The workflow module can provide flexible and convenient workflow operation such as import, viewing, configuration, and delivery. In addition, it can be used in combination with the data model to quickly organize the input data and output data of the workflow to achieve efficient management of bioinformatics data.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_d47814495d9a79678f3f6a513d2c5f89.png)
+实体数据模型可以分为实体数据表格和实体数据集合表格。实体数据表格中，第一列的实体ID对应一个数据实体，数据实体以链接的形式链接到云中真实存放的数据集信息。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_cf0e1fbf72b86b5fe4198a7e597107a4.png)
+实体数据集合表格中，第一列的实体集合ID对应一组数据实体组成的集合，集合内容为数据实体ID组成的数组。注意：
+- 实体数据集合表和实体数据表的关系一一对应，如sample实体表和sample\_set实体集合表一一对应
+- 实体集合表本身没有数据实体链接，而是会用过列名称索引到实体数据表中的数据
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_b13a935ef3cb26fd3f138f9f908737f6.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_9f2caff5ed0dd4ba7b3f166a3333311b.png)
 
-#### View the task analysis process and troubleshooting in Job History
+2.**Workspace级别数据模型**
+Workspace级别的数据模型，顾名思义，代表此数据表格中的内容为整个Workspace内所有样本数据均需要的数据，如参考基因组数据、Docker镜像等。![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_86ed3c025a881be75afd664aec36ec12.png)
 
-The Miracle Cloud analysis history page is a historical record of selecting a certain workflow for analysis of sample data. One delivery by the user is regarded as the analysis of one task. The analysis of one task includes batch analysis of multiple samples (if there are multiple workflows running in batches). The operation of each workflow may be split into multiple steps. In the Job history, you can accurately view the history records of delivery, workflow operation, and task operation.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_f99023b868fb17e2da9555f717733ab5.png)
-![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_47664a7dd8fa16ef0682655bb55c1d1e.png)
-You could do troubleshooting based on task level logs and workflow level logs when the analysis process goes wrong.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_042e3f68ba3587bd5a26d2fb4890eabf.png)
-In addition, the configuration information of this workflow operation (including input sample data and parameter configuration) can be recorded in the analysis history, and the analysis can be quickly reproduced by clicking to jump directly to the configuration page at that time.![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_fbd87900b2ba830dd373e564e6146bc2.png)
+3. **文件数据管理**
+
+文件数据管理中的文件列表是存储在存储桶中的一些文件数据，文件数据可用于在notebook插入读取或者在实体数据模型中进行关联。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c7830fa42dcd10b74f6e472bd9fec8d1.png)
+
+#### 使用Notebooks实时分析数据
+
+Miracle Cloud集成了Jupyterhub开源组件，为用户提供了进行生信数据实时交互分析环境。
+![alt](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_a2b650f1d342818462e1713e5f91abc2.png)
+
+#### 使用工作流简化生信工作流批量分析
+
+工作流模块能够提供灵活、便捷的工作流导入、查看、配置、投递全部操作，此外与数据模型结合使用，能够将工作流的输入数据、输出数据快速组织起来，实现生信数据的高效管理。![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_366197ea6b6e9c4327e459c0a228fd7b.png)
+
+#### 在分析历史页面查看任务分析过程及Troubleshooting
+
+Miracle Cloud分析历史页面是将样本数据选择某条工作流进行分析的历史记录，用户的一次投递视为一次任务的分析，一次任务的分析包含多个样本批量分析（即存在多条工作流批量运行），其中每条工作流的运行可能又会拆分成多个步骤的运行。在分析历史中能够精确、细粒度的查看投递、工作流运行、task运行三个级别的历史记录。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_35b4b29878fee8dbb1f88aa820824943.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c772530880f2d910bbd0ad454d1b51d0.png)
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c3122fdf4758794cc2c297be261d2870.png)
+当分析过程出错时，能够根据task级别日志和工作流级别日志能够进行故障排查工作
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_39550c32af1fb41c29d48015bd5aeae2.png)
+此外，分析历史中能够记录本次工作流运行的配置信息（含输入样本数据、参数配置），能够点击直接跳转至当时配置页面，方面进行快速复现此次分析。
+![](https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c3f9d5fd647da1e3bd5ee6b076cc7727.png)
