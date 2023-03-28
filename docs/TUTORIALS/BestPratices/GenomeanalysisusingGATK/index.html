@@ -12,20 +12,20 @@
         <meta name="author" content="Red Team at Go-home">
       
       
-        <link rel="canonical" href="https://zhou-jianwen.github.io/MiracleCloudZh/TUTORIALS/QuickStart/QuikstartWorkflow/">
+        <link rel="canonical" href="https://zhou-jianwen.github.io/MiracleCloudZh/TUTORIALS/BestPratices/GenomeanalysisusingGATK/">
       
       
-        <link rel="prev" href="../QuikstartWorkspace/">
+        <link rel="prev" href="../../UserGuide/CLI_SDK/">
       
       
-        <link rel="next" href="../QuikstartDataManagement/">
+        <link rel="next" href="../../VerifiedWorkspace/mRNAseq/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>Workflow QuickStart - Miracle Cloud</title>
+        <title>使用GATK进行变异检测 - Miracle Cloud</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#miracle-cloud" class="md-skip">
+        <a href="#gatk" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Workflow QuickStart
+              使用GATK进行变异检测
             
           </span>
         </div>
@@ -387,16 +387,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
       
       
       
@@ -405,7 +403,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_1">
           <span class="md-nav__icon md-icon"></span>
           快速开始
@@ -418,7 +416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../FiveMinuteIntro/" class="md-nav__link">
+      <a href="../../QuickStart/FiveMinuteIntro/" class="md-nav__link">
         FiveMinuteIntro
       </a>
     </li>
@@ -432,7 +430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../DiggerQuickStart/" class="md-nav__link">
+      <a href="../../QuickStart/DiggerQuickStart/" class="md-nav__link">
         Digger QuickStart
       </a>
     </li>
@@ -446,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../QuikstartWorkspace/" class="md-nav__link">
+      <a href="../../QuickStart/QuikstartWorkspace/" class="md-nav__link">
         Workspace QuickStart
       </a>
     </li>
@@ -458,55 +456,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Workflow QuickStart
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../QuickStart/QuikstartWorkflow/" class="md-nav__link">
         Workflow QuickStart
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#miracle-cloud" class="md-nav__link">
-    Miracle Cloud中的工作流
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    快速开启工作流分析
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -518,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../QuikstartDataManagement/" class="md-nav__link">
+      <a href="../../QuickStart/QuikstartDataManagement/" class="md-nav__link">
         Data Management QuickStart
       </a>
     </li>
@@ -532,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Notebooks/" class="md-nav__link">
+      <a href="../../QuickStart/Notebooks/" class="md-nav__link">
         Notebooks QuickStart
       </a>
     </li>
@@ -580,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../FiveMinuteIntro/" class="md-nav__link">
+      <a href="../../QuickStart/FiveMinuteIntro/" class="md-nav__link">
         工作空间
       </a>
     </li>
@@ -849,14 +803,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
       
       
       
@@ -865,7 +821,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_5">
           <span class="md-nav__icon md-icon"></span>
           最佳实践
@@ -876,11 +832,122 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../BestPratices/GenomeanalysisusingGATK/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          使用GATK进行变异检测
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         使用GATK进行变异检测
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gatk" class="md-nav__link">
+    使用GATK进行基因组分析
+  </a>
+  
+    <nav class="md-nav" aria-label="使用GATK进行基因组分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cram2bam" class="md-nav__link">
+    第一部分：运行Cram2Bam数据格式转换工作流
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分：运行Cram2Bam数据格式转换工作流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#miracle-cloud" class="md-nav__link">
+    登录Miracle Cloud
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    上传数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    导入工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    运行工作流
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bamgatk" class="md-nav__link">
+    第二部分：针对上一步输出的BAM通过GATK进行分析
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分：针对上一步输出的BAM通过GATK进行分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gatk_1" class="md-nav__link">
+    运行GATK工作流
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspace" class="md-nav__link">
+    第三部分：完成Workspace概述
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1066,16 +1133,83 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#gatk" class="md-nav__link">
+    使用GATK进行基因组分析
+  </a>
+  
+    <nav class="md-nav" aria-label="使用GATK进行基因组分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cram2bam" class="md-nav__link">
+    第一部分：运行Cram2Bam数据格式转换工作流
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分：运行Cram2Bam数据格式转换工作流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#miracle-cloud" class="md-nav__link">
-    Miracle Cloud中的工作流
+    登录Miracle Cloud
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    快速开启工作流分析
+    上传数据
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    导入工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    运行工作流
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bamgatk" class="md-nav__link">
+    第二部分：针对上一步输出的BAM通过GATK进行分析
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分：针对上一步输出的BAM通过GATK进行分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gatk_1" class="md-nav__link">
+    运行GATK工作流
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspace" class="md-nav__link">
+    第三部分：完成Workspace概述
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1094,24 +1228,115 @@
                   
 
 
-  <h1>Workflow QuickStart</h1>
+  <h1>使用GATK进行变异检测</h1>
 
-<h3 id="miracle-cloud">Miracle Cloud中的工作流</h3>
-<p>工作流是由一系列步骤或者工具的集合组成 ，方便平台使用人员进行生信科研领域的自动化、批量化分析。Miracle Cloud面向开放兼容架构，遵循GA4GH的标准规范，能够兼容标准热门的生信分析工作流规范，如WDL等，生信科研人员能够灵活便捷的开启任意规模的生信分析任务。</p>
-<h3 id="_1">快速开启工作流分析</h3>
-<p>您可以通过以下步骤快速开启一条或多条工作流的执行：</p>
+<h2 id="gatk">使用GATK进行基因组分析</h2>
+<p>本章节介绍了如何使用Genome Analysis Toolkit(GATK)在 Miracle Cloud 上运行基因组分析工作流。本章节中使用的工具来自 GATK ，首先将Cram格式的序列转换为Bam格式，然后通过GATK工具包进行变异分析，得到变异中间结果文件gvcf文件。该工作流使用 WDL编写，并在 Cromwell 引擎上运行。</p>
+<p>:::tip
+<strong>GATK</strong>是<em>Genome Analysis Toolkit</em>的缩写，是用来处理高通量测序数据的一套软件、工具包。最初，GATK被设计用来分析人类基因组和外显子，主要用来寻找SNP和indel。后来，GATK的功能越来越丰富，增加了short variant calling、Copy number variation（CNV）和结构变异（SV）等新功能。同时，GATK也越来越广泛地应用于其他物种的数据分析中。现在，GATK已经成为了基因组和RNA-seq分析过程中寻找变异的行业标准。
+:::</p>
+<h3 id="cram2bam">第一部分：运行Cram2Bam数据格式转换工作流</h3>
+<p>您可以通过这部分了解数据的上传以及成功运行工作流的方法。 该工作流程是一个文件格式转换流程，用于将基因组文件从一种格式 (CRAM) 转换为另一种格式 (BAM) 以进行下游分析。
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_ef05c8dcd02105510bd2ee283b21d996.png" /></p>
 <ol>
-<li>将您待测序或者待分析的样本制作为“数据模块”处的实体数据模型</li>
-<li>从代码仓库中将您的工作流导入至平台上的“工作流”模块</li>
-<li>点击引入对应的工作流，选择对应的实体数据模型表格中的数据：选择一行意味着有一个样本会进行分析，会产生1条工作流；选择多行意味着有多个样本会进行并行分析，会同时产生多条工作流</li>
-<li>工作流配置：支持灵活便捷的工作流配置方式<ol>
-<li>手动输入</li>
-<li>按this规则输入：this.索引对应的实体数据模型的属性列</li>
-<li>Json文件上传配置</li>
-</ol>
+<li>
+<h4 id="miracle-cloud">登录Miracle Cloud</h4>
+<p>使用账号密码登录Miracle Cloud, 账号密码可联系平台管理员获取。
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_5bf5c8c838c692ee8d4a5fbb4c730d51.png" />
+在页面上方有概览、Workspace和Digger三个菜单，其中Digger是可公开的Workspace，通常您可以选择将编辑完成的完整Workspace发布到Digger中，您也可以将Digger中的Workspace复制回Workspace进行重新编辑。选择Workspace，点击新建Workspace，输入名称：GATK-Workflow 以及简短描述。完成创建Workspace之后我们就将开始对于Workspace的构建。
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_b6054b8c6c9ffb21a13ee67d37019ebb.png" />
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_978a3c68ac6ecca3b0765a1a3d0cf9ef.png" /></p>
 </li>
-<li>点击投递，可以进入“分析历史”模块查看本次投递的运行记录</li>
+<li>
+<h4 id="_1">上传数据</h4>
+<p>通常上传所需要分析的数据是开启工作流分析的第一步，在这个实践中，我们需要先将所用到的数据集传到存储桶中，并制作对应的数据模型；您有两种制作和获得分析所用的数据模型：</p>
+</li>
+<li>可以根据以下链接先下载样本数据集文件和参考数据集文件至本地，然后再上传至Workspace对应的存储桶中，最后可以根据文件对应的S3路径制作数据模型</li>
+<li>可以直接下载此最佳实践对应的数据模型sample.csv文件，选用此方式可以直接从step d开始</li>
 </ol>
+<pre><code class="language-bash">#本教程中用到的数据集下载链接：
+#CSV数据模型:
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/sample.csv
+#样本数据集文件：
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/sample-data/NA12878.cram
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/sample-data/my-sample-data.cram
+#参考数据集文件：
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.dict
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.fasta
+https://tutorials-data.tos-cn-guangzhou.volces.com/cram-to-bam/reference-data/Homo\_sapiens\_assembly38.fasta.fai
+</code></pre>
+<p>点击平台左侧边栏<strong>数据-文件列表</strong>，进入文件数据管理页面，通过点击上传文件，可以根据引导上传本地数据文件至此Workspae对应的对象存储桶中。<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_df7377f3e58f3fdefa6d040ac5d8027b.png" />
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_e9ab9f548d359f57ab085433e2c81218.png" />
+数据上传完成后，下载csv模版并组织数据。点击左侧数据栏，点击<strong>实体数据模型</strong>列表右侧加号，出现上传数据模型选项框，点击下载数据模型模版。
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_70cc5fbed2ec6f06048fd40e9bc2b754.png" />
+其中sample_id列为样本的唯一ID，之后的所有列皆为属性列，在属性列中，属性可以是具体的整数，字符串，当然更多的时候属性列会关联到云中的数据文件，在这里我们使用数据模型关联已经上传的数据集文件。
+    a. 首先需要进入到<strong>数据-文件列表</strong>； 
+    b. 点击所需文件后的链接标签，会显示此文件对应的URL路径和S3路径；
+    c. 点击S3路径后的“复制”按钮，并将链接粘贴至对应的属性列中
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_87e0774121a5ec756e2582069c024c13.png" />
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_da5c10cae6ef65cdcf032bdfefe196b0.png" />
+    d.上传实体数据模型：点击实体数据模型右侧的"+"，出现上传数据模型选项框，上传编辑好的csv文件。
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_bea0206d7cbb6bb6a96fd33ce4609cc7.png" />
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_07816eb000c8714a7789c860744657ee.png" /></p>
+<ol>
+<li>
+<h4 id="_2">导入工作流</h4>
+Miracle Cloud使用工作流描述语言 (WDL) 中的工作流来处理基因组学数据。所有接收映射读取数据的 GATK 工具都期望 BAM 文件作为主要格式。有些支持CRAM格式，但我们观察到直接从 CRAM 文件工作时会出现性能问题，因此，我们首先将 CRAM 转换为 BAM。</li>
+</ol>
+<p>:::tip
+SAM、BAM 和 CRAM 都是原始 SAM 格式的不同形式，这些格式是为保存对齐（或更准确地说，<em>映射</em>）的高通量测序数据而定义的。SAM 代表序列比对图，并在<a href="http://samtools.github.io/hts-specs">此处</a>的标准规范中进行了描述。BAM 和 CRAM 都是 SAM 的压缩形式；BAM（用于二进制对齐图）是一种无损压缩，而 CRAM 的范围可以从无损到有损，具体取决于您想要实现多少压缩（<em>实际上</em>最多）。BAM 和 CRAM 拥有与其 SAM 等价物相同的信息，结构方式相同；它们之间的不同之处在于文件本身的编码方式。
+:::
+接下来我们需要将Cram-to-Bam 工作流导入到Workspace中，
+    a. 点击导入工作流
+    b. 选择自定义导入
+    c. 输入对应的输入项（<em>输入项的填写方法可查看用户指南中的自定义导入</em>）
+        - Git address： <a href="https://gitee.com/joy_lee/seq-format-conversion01">https://gitee.com/joy_lee/seq-format-conversion01</a>
+        - Tag: v0.47
+        - Main path：CramToBam.wdl
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_19282b30883efcecc1ed242a8022de98.png" /></p>
+<p>这样就完成了我们所需要的Cram to Bam的转换工作流导入。</p>
+<ol>
+<li>
+<h4 id="_3">运行工作流</h4>
+</li>
+</ol>
+<p>刚才我们已经完成了工作流的导入，那么接下来我们将运行导入的工作流。
+    a. 运行环境关联：点击<strong>环境管理</strong>，选择<strong>工作流——关联集群</strong>，从候选集群列表中选择集群，点击关联。<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c694e576c2d426c506526b7f21aee1ec.png" />
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_e0bcb694962037971a22242e30119b7a.png" />
+    b. 选择我们刚才导入的Cram-to-Bam工作流
+    c. 在这里我们需要配置运行选项和运行参数，在运行选项中，选择刚才我们第一步中所上传的数据实体，并指定实体数据。<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_2ebc45d1ba9316e34894039e21def8b1.png" />
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c495d00c54369999060a69d67dbc1bf8.png" />
+    d. 配置输入参数，选中输入参数选项卡，并按照如下参数进行输入，其中"this"表示此次分析所用到的csv文件，"this"后面的内容为对应csv中的列名称；当输入参数较多时，可以使用上传JSON文件的方式进行快速地导入。<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_8be5120d48939a49bf74d65c40c41e9e.png" />
+    e. 配置输出参数，使用this.bai作为bai文件的输出属性列，this.bam作为bam文件的属性列
+:::tip
+通过this.列名，指定输出的结果输出到所选择的数据表的指定列中；如果原表格中没有此列则按照列名新加列；如果原表格有对应的列，则会将直接将新结果进行填充或覆盖
+:::
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_949488e50beff75c79b1709417f5daea.png" />
+    f. 点击右上角开始分析，此时工作流会通过Cromwell工作流引擎进行分析，结果可在分析历史中进行查看</p>
+<h3 id="bamgatk">第二部分：针对上一步输出的BAM通过GATK进行分析</h3>
+<p>这个章节中我们需要使用第一部分所输出的Bam以及Bai文件通过GATK工作流进行进一步分析，最终输出所需要的gvcf文件。
+1. #### 导入GATK工作流
+我们还需要导入针对Bam序列进行进行变异分析，得到变异中间结果文件gvcf文件的工作流。点击左侧<strong>工作流</strong>><strong>导入工作流，</strong> 填写对应的输入信息：
+    a. Git address：https://gitee.com/joy_lee/gatk-pipeline
+    b. Tag: v0.34 <br />
+    c. Main path：Hello-GATK.wdl</p>
+<ol>
+<li>
+<h4 id="gatk_1">运行GATK工作流</h4>
+<p>a. 选择<strong>数据：</strong> sample，仍然选择NA12878和my_sample_data，这部分我们将使用第一部分中所输出的bam文件作为这一部分的输入。
+b. 点击<strong>输入参数</strong>选项卡进行配置 ，如选择Hello_GATK.input_bam, 在属性值下拉选择this.bam，将所有输入配置完成后如下所示<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_40eeb798c61a1a5ef2f5b0befb7b348d.png" />
+c. 点击<strong>输出参数</strong>选项卡，您可以在其中填写 output_gvcf 变量的属性。要写入数据表，首先键入“this”。然后为该属性添加一个名称。工作流将为在sample数据表中生成一列。
+d. 点击右上角 <strong>运行分析</strong> 按钮以提交您的工作流
+如果您的结果正确提交，那么在分析历史中查看到当前工作流的分析状态。稍等一段时间之后您就会看到分析状态转为分析成功<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_c93a8f59d241ed106e98515fd67c05a0.png" />
+3. #### 查看分析历史
+等待分析完成之后可以在点击左侧菜单栏<strong>分析历史</strong>， 查看输出的参数，并将对应样本的gvcf文件进行下载。
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_53bc1b80810d11c4bc35f1993b2b5dcc.png" />
+至此我们也完成了两个工作流的运行，完成了从Cram到Bam文件的格式转换，并通过GATK对Bam序列，进行变异分析，得到变异中间结果文件gvcf文件。</p>
+</li>
+</ol>
+<h3 id="workspace">第三部分：完成Workspace概述</h3>
+<p>如果您已经完成了所有的工作流分析工作，您可能还希望为您的Workspace写一个摘要或者介绍，您可以点击左侧Dashboard，Dashboard同样集成了Jupyter Notebook，您可以使用Jupyter Notebook中使用MarkDown进行文档的编写，完成编辑后点击<strong>保存</strong>并<strong>退出编辑。</strong>
+<img alt="" src="https://portal.volccdn.com/obj/volcfe/cloud-universal-doc/upload_45b21dca9b449a6eecba49c939ae29ec.png" /></p>
 
 
 

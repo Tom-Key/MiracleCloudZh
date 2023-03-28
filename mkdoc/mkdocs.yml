@@ -19,4 +19,46 @@ extra:
       lang: zh
 
 
+nav:
+- 动态与公告:
+    - 产品动态: RELEASENOTE/Release.md
+- 概览:
+    - Miracle Cloud简介: OVERVIE/MiracleCloud/Introduction.md
+    - 术语库: OVERVIE/Glossary/Glossary.md
+    - 核心优势: OVERVIE/Advantages/Advantages.md
+    - 应用场景: OVERVIE/Scenario.md
+- 用户指南:
+    - 快速开始: 
+        - FiveMinuteIntro: TUTORIALS/QuickStart/FiveMinuteIntro.md
+        - Digger QuickStart: TUTORIALS/QuickStart/DiggerQuickStart.md
+        - Workspace QuickStart: TUTORIALS/QuickStart/QuikstartWorkspace.md
+        - Workflow QuickStart: TUTORIALS/QuickStart/QuikstartWorkflow.md
+        - Data Management QuickStart: TUTORIALS/QuickStart/QuikstartDataManagement.md
+        - Notebooks QuickStart: TUTORIALS/QuickStart/Notebooks.md
+    - 工作空间:
+        - 工作空间: TUTORIALS/QuickStart/FiveMinuteIntro.md
+        - Dashboard: TUTORIALS/UserGuide/Workspace/Dashboard.md 
+        - 数据: TUTORIALS/UserGuide/Workspace/Data.md
+        - Notebooks: TUTORIALS/UserGuide/Workspace/Notebooks.md
+        - 工作流: TUTORIALS/UserGuide/Workspace/Workflow.md
+        - 分析历史: TUTORIALS/UserGuide/Workspace/JobHistory.md
+        - 环境管理 : TUTORIALS/UserGuide/Workspace/Environment.md
+        - 成员管理 : TUTORIALS/UserGuide/Workspace/Member.md
+    - 资源仓库:
+        - Digger: TUTORIALS/UserGuide/Digger.md
+        - Container Registry: TUTORIALS/UserGuide/ContainerRegistry.md
+        - DataSets: TUTORIALS/UserGuide/DataSets.md
+        - Dockstore: TUTORIALS/UserGuide/Dockstore.md
+        - GitLab: TUTORIALS/UserGuide/GitLab.md
+    - 开发者工具:
+       - API参考指南: TUTORIALS/UserGuide/CLI_SDK.md
+    - 最佳实践:
+        - 使用GATK进行变异检测: TUTORIALS/BestPratices/GenomeanalysisusingGATK.md
+    - Verified Workspace:
+        - mRNA-seq: TUTORIALS/VerifiedWorkspace/mRNAseq.md
+- 培训课程:  TRAINING/Train.md
+- 相关资源: 
+    - 工作流编写: RELATEDRESOURCE/RELATEDRESOURCE.md
+- 常见问题:  Q&A/QA.md
+- 关于我们:  ABOUT/AboutUS.md
 
